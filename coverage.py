@@ -80,27 +80,27 @@ print(fastq_R1)
 
 #running kraken
 names = []
-for i in fastq_R1:
-    krkan(i)
+# for i in fastq_R1:
+#     krkan(i)
 
 #making database of top kraken hit
-Kraken_list = []
-percent_list = []
-names_list = []
-krk = [f for f in os.listdir('.') if f.endswith('.braken')]
-krk = sorted(krk) 
+# Kraken_list = []
+# percent_list = []
+# names_list = []
+# krk = [f for f in os.listdir('.') if f.endswith('.braken')]
+# krk = sorted(krk) 
 
-for i in krk: 
-        file_ = path + str(i)
-        name = str(i).split('.braken')[0]
-        df = pd.read_csv(file_,sep = '\t')
-        df.sort_values(by=['fraction_total_reads'],ascending = False, inplace=True)
-        df = df.reset_index(drop=True)
-        kraken = df.at[0,'name']
-        percentage= df.at[0,'fraction_total_reads']
-        Kraken_list.append(kraken)
-        names_list.append(name)
-        percent_list.append(percentage)
+# for i in krk: 
+#         file_ = path + str(i)
+#         name = str(i).split('.braken')[0]
+#         df = pd.read_csv(file_,sep = '\t')
+#         df.sort_values(by=['fraction_total_reads'],ascending = False, inplace=True)
+#         df = df.reset_index(drop=True)
+#         kraken = df.at[0,'name']
+#         percentage= df.at[0,'fraction_total_reads']
+#         Kraken_list.append(kraken)
+#         names_list.append(name)
+#         percent_list.append(percentage)
 
 
 
@@ -176,15 +176,15 @@ for i in quali:
 
 # take all the lists (names, coverage and kraken/braken results) and put them into a csv file
         
-df_k = pd.DataFrame(list(zip(names_list,Kraken_list,percent_list)),columns=['Name','Species','Percent Reads Mapped']) 
-df_k.set_index('Name')
+# df_k = pd.DataFrame(list(zip(names_list,Kraken_list,percent_list)),columns=['Name','Species','Percent Reads Mapped']) 
+# df_k.set_index('Name')
 #df_k.to_csv('kraken' + time + '.csv')
 # coverage csv file
 df = pd.DataFrame(list(zip(name_list,cover,gcs,conts,lst,ref,N50)),columns=['Name','Coverage','GC content', 'Total Contigs','total reads','Reference genome size','N50']) 
 df.set_index('Name')
-print(df_k)
+# print(df_k)
 print(df) 
-#df.to_csv('quality' + time + '.csv')
+df.to_csv('quality' + time + '.csv')
 
 
 ############
